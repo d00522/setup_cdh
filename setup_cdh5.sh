@@ -79,7 +79,7 @@ ensureVariable() {
 
     #检查ORACLE JDK, 如果有其他版本的JDK，则继续安装
     echo "CHECK Oracle JDK...";
-    if [ ! -f ${PACKAGES_PATH}/${ORACLE_JDK_PACKAGE} ]; then
+    if [ ! -s ${PACKAGES_PATH}/${ORACLE_JDK_PACKAGE} ]; then
         if [ -f ${PACKAGES_PATH}/jdk-8u*.tar.gz ]; then
             ORACLE_JDK_PACKAGE=$(ls ${PACKAGES_PATH}/jdk-8u*.tar.gz | awk -F '/' '{print $NF}');
         else
@@ -89,30 +89,30 @@ ensureVariable() {
 
     #检查MySQL JDBC 安装包
     echo "CHECK MySQL Connector...";
-    if [ ! -f ${PACKAGES_PATH}/${MYSQL_JDBC_DRIVER} ]; then
+    if [ ! -s ${PACKAGES_PATH}/${MYSQL_JDBC_DRIVER} ]; then
         exitError "MySQL Connector NOT FOUND";
     fi
 
     #检查cloudera manager rpm包
     echo "CHECK Cloudera Manager packages...";
-    if [ ! -f ${PACKAGES_PATH}/${CLOUDERA_MANAGER_DEAMON} ]; then
+    if [ ! -s ${PACKAGES_PATH}/${CLOUDERA_MANAGER_DEAMON} ]; then
         exitError "Cloudera Manager Deamon RPM NOT FOUND";
     fi
-    if [ ! -f ${PACKAGES_PATH}/${CLOUDERA_MANAGER_SERVER} ]; then
+    if [ ! -s ${PACKAGES_PATH}/${CLOUDERA_MANAGER_SERVER} ]; then
         exitError "Cloudera Manager Server RPM NOT FOUND";
     fi
-    if [ ! -f ${PACKAGES_PATH}/${CLOUDERA_MANAGER_AGENT} ]; then
+    if [ ! -s ${PACKAGES_PATH}/${CLOUDERA_MANAGER_AGENT} ]; then
         exitError "Cloudera Manager Agent RPM NOT FOUND";
     fi
 
     #检查CDH parcel包
-    if [ ! -f ${PACKAGES_PATH}/${CDH_PARCEL} ]; then
+    if [ ! -s ${PACKAGES_PATH}/${CDH_PARCEL} ]; then
         exitError "CDH Parcel FILE NOT FOUND";
     fi
-    if [ ! -f ${PACKAGES_PATH}/${CDH_SHA} ]; then
+    if [ ! -s ${PACKAGES_PATH}/${CDH_SHA} ]; then
         exitError "CDH SHA FILE NOT FOUND";
     fi
-    if [ ! -f ${PACKAGES_PATH}/${CDH_MANIFEST_JSON} ]; then
+    if [ ! -s ${PACKAGES_PATH}/${CDH_MANIFEST_JSON} ]; then
         exitError "CDH manifest.json FILE NOT FOUND";
     fi
 
